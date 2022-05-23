@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { filmsAPIs } from "../configurations/api-endpoints";
-
+import { Spinner } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { apiLoadingState } from "../store/loader/loaderSlice";
 import TableView from "../components/TableView";
-import { Button } from "react-bootstrap";
+import { errorsFromAPI } from "../store/error/errorSlice";
 
 const Films = () => {
   const [films, setFilms] = useState([]);
-  const [iconView, setIconView] = useState(false);
+  const [loader] = useSelector((state) => {
+    return [state.loader?.loader];
+  });
+  const dispatch = useDispatch();
 
   const columns = [
     "Title",
@@ -18,14 +23,21 @@ const Films = () => {
     "Opening crawl",
   ];
   const getFilms = () => {
+    dispatch(apiLoadingState(true));
     axios
       .get(filmsAPIs.getFilms)
       .then((response) => {
+        dispatch(apiLoadingState(false));
         let results = response.data.results;
         setFilms(results);
       })
       .catch((error) => {
-        console.log(error);
+        let errors = {
+          errorTitle: "Get films data",
+          errorBody: error.response?.data?.detail,
+        };
+        dispatch(apiLoadingState(false));
+        dispatch(errorsFromAPI(errors));
       });
   };
   useEffect(() => {
@@ -33,16 +45,14 @@ const Films = () => {
   }, []);
 
   return (
-    <div className="p-2">
-      <Button
-        variant="primary"
-        onClick={() => {
-          setIconView(!iconView);
-        }}
-      >
-        {iconView ? "Icon view" : "Table view"}
-      </Button>
-      <TableView tableData={films} columns={columns} />
+    <div className="pt-3">
+      {loader ? (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
+        <TableView tableData={films} columns={columns} />
+      )}
     </div>
   );
 };

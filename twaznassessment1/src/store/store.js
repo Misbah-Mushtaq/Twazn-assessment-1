@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loaderReducer from "./loader/loaderSlice";
 import viewsReducer from "./views/viewsSlice";
+import errorReducer from "./error/errorSlice";
 
 const localStorageMiddleware = ({ getState }) => {
   return (next) => (action) => {
@@ -19,6 +20,7 @@ export const store = configureStore({
   reducer: {
     loader: loaderReducer,
     manageViews: viewsReducer,
+    error: errorReducer,
   },
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>

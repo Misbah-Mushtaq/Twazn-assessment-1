@@ -1,14 +1,9 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import { formatDate } from "../utils";
 import AccordianData from "./AccordianData";
 
 const TableView = ({ tableData, columns }) => {
-  const [iconView] = useSelector((state) => {
-    return [state.manageViews?.iconView];
-  });
-  console.log("ICON VIEW", iconView);
   return (
     <Table bordered hover responsive>
       <thead>
