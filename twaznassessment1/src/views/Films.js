@@ -58,7 +58,7 @@ const Films = () => {
     getFilms();
   }, []);
 
-  return <div className="pt-3">{conditionalRendering()}</div>;
+  return <div className="main-container">{conditionalRendering()}</div>;
 };
 
 export default Films;

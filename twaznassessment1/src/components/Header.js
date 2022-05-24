@@ -23,7 +23,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll"></Navbar.Collapse>
         <Button variant="primary" onClick={handleView}>
-          {iconView ? "Switch to Icon View" : "Switch to Table View"}
+          {iconView ? "Switch to Table View" : "Switch to Icon View"}
         </Button>
       </Container>
     </Navbar>
