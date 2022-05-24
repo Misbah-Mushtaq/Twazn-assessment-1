@@ -21,29 +21,23 @@ const TableView = ({ tableData, columns }) => {
         </tr>
       </thead>
       <tbody>
-        {tableData.length > 0 ? (
-          tableData.map((value, index) => {
-            return (
-              <tr key={index}>
-                <td>{value.title}</td>
-                <td>{value.episode_id}</td>
-                <td>{value.director}</td>
-                <td>{formatDate(value.created)}</td>
-                <td>{formatDate(value.edited)}</td>
-                <td>
-                  <AccordianData
-                    bodyContent={value.opening_crawl}
-                    accordianHeader={value.title}
-                  />
-                </td>
-              </tr>
-            );
-          })
-        ) : (
-          <tr>
-            <td>NO RECORD FOUND</td>
-          </tr>
-        )}
+        {tableData.map((value, index) => {
+          return (
+            <tr key={index}>
+              <td>{value.title}</td>
+              <td>{value.episode_id}</td>
+              <td>{value.director}</td>
+              <td>{formatDate(value.created)}</td>
+              <td>{formatDate(value.edited)}</td>
+              <td>
+                <AccordianData
+                  bodyContent={value.opening_crawl}
+                  accordianHeader={value.title}
+                />
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </Table>
   );
