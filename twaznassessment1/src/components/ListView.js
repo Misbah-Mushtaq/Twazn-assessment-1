@@ -5,12 +5,14 @@ import FilmDetails from "./FilmDetails";
 
 const ListView = ({ data }) => {
   const [showFilmInfo, setShowFilmInfo] = useState(false);
+  const [filmId, setFilmId] = useState("");
 
   const handleClose = () => {
     setShowFilmInfo(false);
   };
-  const handleShow = () => {
+  const handleShow = (id) => {
     setShowFilmInfo(true);
+    setFilmId(id);
   };
   return (
     <>
@@ -26,7 +28,7 @@ const ListView = ({ data }) => {
                 variant="top"
                 src={filmIcon}
                 className="card-image"
-                onClick={handleShow}
+                onClick={() => handleShow(index + 1)}
               />
               <Card.Body>
                 <Card.Title>{value.title}</Card.Title>
@@ -39,7 +41,11 @@ const ListView = ({ data }) => {
         })}
       </div>
       {showFilmInfo && (
-        <FilmDetails show={showFilmInfo} handleClose={handleClose} />
+        <FilmDetails
+          show={showFilmInfo}
+          handleClose={handleClose}
+          id={filmId}
+        />
       )}
     </>
   );
