@@ -5,6 +5,7 @@ import { filmsAPIs } from "../configurations/api-endpoints";
 import { apiLoadingState } from "../store/loader/loaderSlice";
 import { errorsFromAPI } from "../store/error/errorSlice";
 import { useDispatch } from "react-redux";
+import { formatDate } from "../utils";
 
 const FilmDetails = ({ handleClose, show, id }) => {
   const [filmDetail, setFilmDetail] = useState({});
@@ -39,7 +40,32 @@ const FilmDetails = ({ handleClose, show, id }) => {
         <Modal.Header closeButton>
           <Modal.Title>{filmDetail.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body className="film-details-body">
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Director</label>
+            <span>{filmDetail.director}</span>
+          </div>
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Producer</label>
+            <span>{filmDetail.producer}</span>
+          </div>
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Created</label>
+            <span>{formatDate(filmDetail.created)}</span>
+          </div>
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Edited</label>
+            <span>{formatDate(filmDetail.edited)}</span>
+          </div>
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Director</label>
+            <span>{filmDetail.director}</span>
+          </div>
+          <div className="d-flex gap-3">
+            <label className="text-black-50">Producer</label>
+            <span>{filmDetail.producer}</span>
+          </div>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

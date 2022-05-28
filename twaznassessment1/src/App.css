@@ -21,3 +21,10 @@ table thead tr th {
 .card-image:hover {
     opacity: 0.8;
 }
+
+.film-details-body {
+    display: flex;
+    gap: 10px;
+    flex-basis: 50%;
+    flex-wrap: wrap;
+}
