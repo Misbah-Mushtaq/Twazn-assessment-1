@@ -28,3 +28,7 @@ table thead tr th {
     flex-basis: 50%;
     flex-wrap: wrap;
 }
+
+.zIndex {
+    z-index: "99999";
+}

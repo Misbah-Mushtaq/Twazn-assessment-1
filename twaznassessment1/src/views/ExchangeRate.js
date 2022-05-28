@@ -49,7 +49,7 @@ const ExchangeRate = () => {
     <div className="main-container">
       {loader && (
         <div className="d-flex justify-content-center">
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" variant="primary" className="zIndex" />
         </div>
       )}
       {result.result && (
